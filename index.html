@@ -290,14 +290,14 @@
         <input type="number" id="prosperity" value="0" required>
     </div>
 
-    <div id="amuletDamage-container" style="display:none;">
-        <label for="amuletDamage">Amulet Damage:</label>
-        <input type="number" id="amuletDamage" value="0" required>
+    <div id="amuletdamage-container" style="display:none;">
+        <label for="amuletdamage">Amulet Damage:</label>
+        <input type="number" id="amuletdamage" value="0" required>
     </div>
 
-    <div id="amuletDefense-container" style="display:none;">
-        <label for="amuletDefense">Amulet Defense:</label>
-        <input type="number" id="amuletDefense" value="0" required>
+    <div id="amuletdefense-container" style="display:none;">
+        <label for="amuletdefense">Amulet Defense:</label>
+        <input type="number" id="amuletdefense" value="0" required>
     </div>
 
     <button type="button" onclick="generateYAML()">Generate YAML</button>
@@ -316,11 +316,11 @@ function updateStatsAccessibility() {
     
     // Show amulet stats only for Iron Nugget
     if (material === "IRON_NUGGET") {
-        document.getElementById('amuletDamage-container').style.display = 'block';
-        document.getElementById('amuletDefense-container').style.display = 'block';
+        document.getElementById('amuletdamage-container').style.display = 'block';
+        document.getElementById('amuletdefense-container').style.display = 'block';
     } else {
-        document.getElementById('amuletDamage-container').style.display = 'none';
-        document.getElementById('amuletDefense-container').style.display = 'none';
+        document.getElementById('amuletdamage-container').style.display = 'none';
+        document.getElementById('amuletdefense-container').style.display = 'none';
     }
 
     // Additional Restrictions (based on item categories)
@@ -383,8 +383,8 @@ function generateYAML() {
         swingrange: document.getElementById('swingrange').value,
         speed: document.getElementById('speed').value,
         prosperity: document.getElementById('prosperity').value,
-        amuletDamage: document.getElementById('amuletDamage').value,
-        amuletDefense: document.getElementById('amuletDefense').value,
+        amuletdamage: document.getElementById('amuletdamage').value,
+        amuletdefense: document.getElementById('amuletdefense').value,
     };
 
     let yamlData = `name: "${coloredName}"

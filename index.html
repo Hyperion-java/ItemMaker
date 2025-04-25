@@ -255,11 +255,6 @@
         <input type="number" id="defense" value="0" required>
     </div>
 
-    <div id="precision-container" style="display:none;">
-        <label for="precision">Precision:</label>
-        <input type="number" id="precision" value="0" required>
-    </div>
-
     <div id="truedamage-container">
         <label for="truedamage">True Damage:</label>
         <input type="number" id="truedamage" value="0" required>
@@ -273,11 +268,6 @@
     <div id="ferocity-container">
         <label for="ferocity">Ferocity:</label>
         <input type="number" id="ferocity" value="0" required>
-    </div>
-
-    <div id="swingrange-container">
-        <label for="swingrange">Swing Range:</label>
-        <input type="number" id="swingrange" value="0" required>
     </div>
 
     <div id="speed-container">
@@ -333,11 +323,9 @@ function updateStatsAccessibility() {
     document.getElementById('damage-container').style.display = isSword || isTool || isBow ? 'block' : 'none';
     document.getElementById('strength-container').style.display = isSword || isArmor || isTool || isBow ? 'block' : 'none';
     document.getElementById('defense-container').style.display = isArmor ? 'block' : 'none';
-    document.getElementById('precision-container').style.display = isBow ? 'block' : 'none';
     document.getElementById('truedamage-container').style.display = isSword || isTool ? 'block' : 'none';
     document.getElementById('truedefense-container').style.display = isArmor ? 'block' : 'none';
     document.getElementById('ferocity-container').style.display = isSword || isBow ? 'block' : 'none';
-    document.getElementById('swingrange-container').style.display = material === "NETHERITE_SWORD" ? 'block' : 'none';
     document.getElementById('speed-container').style.display = isBow || isSword || isTool ? 'block' : 'none';
     document.getElementById('prosperity-container').style.display = isBow || isSword || isTool || isArmor ? 'block' : 'none';
 
@@ -376,11 +364,9 @@ function generateYAML() {
         damage: document.getElementById('damage').value,
         strength: document.getElementById('strength').value,
         defense: document.getElementById('defense').value,
-        precision: document.getElementById('precision').value,
         truedamage: document.getElementById('truedamage').value,
         truedefense: document.getElementById('truedefense').value,
         ferocity: document.getElementById('ferocity').value,
-        swingrange: document.getElementById('swingrange').value,
         speed: document.getElementById('speed').value,
         prosperity: document.getElementById('prosperity').value,
         amuletdamage: document.getElementById('amuletdamage').value,

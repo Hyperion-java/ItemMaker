@@ -250,6 +250,11 @@
         <input type="number" id="strength" value="0" required>
     </div>
 
+    <div id="health-container">
+        <label for="defense">Health:</label>
+        <input type="number" id="health" value="0" required>
+    </div>
+
     <div id="defense-container">
         <label for="defense">Defense:</label>
         <input type="number" id="defense" value="0" required>
@@ -280,6 +285,11 @@
         <input type="number" id="prosperity" value="0" required>
     </div>
 
+    <div id="attack_speed-container" style="display:none;">
+        <label for="attack_speed">Attack Speed:</label>
+        <input type="number" id="attack_speed" value="0" required>
+    </div>
+
     <div id="amuletdamage-container" style="display:none;">
         <label for="amuletdamage">Amulet Damage:</label>
         <input type="number" id="amuletdamage" value="0" required>
@@ -288,6 +298,26 @@
     <div id="amuletdefense-container" style="display:none;">
         <label for="amuletdefense">Amulet Defense:</label>
         <input type="number" id="amuletdefense" value="0" required>
+    </div>
+
+    <div id="mining_fortune-container" style="display:none;">
+        <label for="mining_fortune">Mining Fortune:</label>
+        <input type="number" id="mining_fortune" value="0" required>
+    </div>
+
+    <div id="heat_resistance-container" style="display:none;">
+        <label for="heat_resistance">Heat Resistance:</label>
+        <input type="number" id="heat_resistance" value="0" required>
+    </div>
+
+    <div id="fishing_fortune-container" style="display:none;">
+        <label for="fishing_fortune">Fishing Fortune:</label>
+        <input type="number" id="fishing_fortune" value="0" required>
+    </div>
+
+    <div id="farming_fortune-container" style="display:none;">
+        <label for="farming_fortune">Farming Fortune:</label>
+        <input type="number" id="farming_fortune" value="0" required>
     </div>
 
     <button type="button" onclick="generateYAML()">Generate YAML</button>
@@ -302,6 +332,18 @@
 <script>
 // JavaScript to handle visibility of stats based on selected material
 function updateStatsAccessibility() {
+
+    const statFields = [
+    'damage', 'strength', 'health', 'defense', 'truedamage', 'truedefense',
+    'ferocity', 'speed', 'prosperity', 'attack_speed', 'amuletdamage', 'amuletdefense',
+    'mining_fortune', 'heat_resistance', 'fishing_fortune', 'farming_fortune'
+];
+
+statFields.forEach(id => {
+    const field = document.getElementById(id);
+    if (field) field.value = 0;
+});
+    
     const material = document.getElementById('material').value;
     
     // Show amulet stats only for Iron Nugget
@@ -322,22 +364,34 @@ function updateStatsAccessibility() {
     // Restrict fields based on material type
     document.getElementById('damage-container').style.display = isSword || isTool || isBow ? 'block' : 'none';
     document.getElementById('strength-container').style.display = isSword || isArmor || isTool || isBow ? 'block' : 'none';
+    document.getElementById('health-container').style.display = isArmor ? 'block' : 'none';
     document.getElementById('defense-container').style.display = isArmor ? 'block' : 'none';
     document.getElementById('truedamage-container').style.display = isSword || isTool ? 'block' : 'none';
     document.getElementById('truedefense-container').style.display = isArmor ? 'block' : 'none';
     document.getElementById('ferocity-container').style.display = isSword || isBow ? 'block' : 'none';
-    document.getElementById('speed-container').style.display = isBow || isSword || isTool ? 'block' : 'none';
+    document.getElementById('mining_fortune-container').style.display = isTool ? 'block' : 'none';
+    document.getElementById('fishing_fortune-container').style.display = isTool ? 'block' : 'none';
+    document.getElementById('farming_fortune-container').style.display = isTool ? 'block' : 'none';
+    document.getElementById('speed-container').style.display = isBow || isTool || isTool ? 'block' : 'none';
+    document.getElementById('attack_speed-container').style.display = isBow || isSword || isTool ? 'block' : 'none';
     document.getElementById('prosperity-container').style.display = isBow || isSword || isTool || isArmor ? 'block' : 'none';
+    document.getElementById('heat_resistance-container').style.display = isArmor ? 'block' : 'none';
 
     // Restrict stats for Bows
     if (isBow) {
         document.getElementById('damage-container').style.display = 'none';
         document.getElementById('strength-container').style.display = 'none';
+        document.getElementById('health-container').style.display = 'none';
         document.getElementById('defense-container').style.display = 'none';
         document.getElementById('truedamage-container').style.display = 'none';
         document.getElementById('truedefense-container').style.display = 'none';
         document.getElementById('ferocity-container').style.display = 'none';
-        document.getElementById('swingrange-container').style.display = 'none';
+        document.getElementById('heat_resistance-container').style.display = 'none';
+        document.getElementById('mining_fortune-container').style.display = 'none';
+        document.getElementById('fishing_fortune-container').style.display = 'none';
+        document.getElementById('farming_fortune-container').style.display = 'none';
+        document.getElementById('attack_speed-container').style.display = 'none';
+        
     }
 }
 
@@ -363,14 +417,20 @@ function generateYAML() {
     const stats = {
         damage: document.getElementById('damage').value,
         strength: document.getElementById('strength').value,
+        health: document.getElementById('health').value,
         defense: document.getElementById('defense').value,
         truedamage: document.getElementById('truedamage').value,
         truedefense: document.getElementById('truedefense').value,
         ferocity: document.getElementById('ferocity').value,
         speed: document.getElementById('speed').value,
+        attack_speed: document.getElementById('attack_speed').value,
         prosperity: document.getElementById('prosperity').value,
         amuletdamage: document.getElementById('amuletdamage').value,
         amuletdefense: document.getElementById('amuletdefense').value,
+        heat_resistance: document.getElementById('heat_resistance').value,
+        mining_fortune: document.getElementById('mining_fortune').value,
+        fishing_fortune: document.getElementById('fishing_fortune').value,
+        farming_fortune: document.getElementById('farming_fortune').value,
     };
 
     let yamlData = `name: "${coloredName}"

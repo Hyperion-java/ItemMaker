@@ -310,6 +310,11 @@
         <input type="number" id="heat_resistance" value="0" required>
     </div>
 
+    <div id="trophy_chance-container" style="display:none;">
+        <label for="trophy_chance">Trophy Chance:</label>
+        <input type="number" id="trophy_chance" value="0" required>
+    </div>
+
     <div id="fishing_fortune-container" style="display:none;">
         <label for="fishing_fortune">Fishing Fortune:</label>
         <input type="number" id="fishing_fortune" value="0" required>
@@ -336,7 +341,7 @@ function updateStatsAccessibility() {
     const statFields = [
     'damage', 'strength', 'health', 'defense', 'truedamage', 'truedefense',
     'ferocity', 'speed', 'prosperity', 'attack_speed', 'amuletdamage', 'amuletdefense',
-    'mining_fortune', 'heat_resistance', 'fishing_fortune', 'farming_fortune'
+    'mining_fortune', 'heat_resistance', 'fishing_fortune', 'trophy_chance', 'farming_fortune'
 ];
 
 statFields.forEach(id => {
@@ -371,6 +376,7 @@ statFields.forEach(id => {
     document.getElementById('ferocity-container').style.display = isSword || isBow ? 'block' : 'none';
     document.getElementById('mining_fortune-container').style.display = isTool ? 'block' : 'none';
     document.getElementById('fishing_fortune-container').style.display = isTool ? 'block' : 'none';
+    document.getElementById('trophy_chance-container').style.display = isTool ? 'block' : 'none';
     document.getElementById('farming_fortune-container').style.display = isTool ? 'block' : 'none';
     document.getElementById('speed-container').style.display = isBow || isTool || isTool ? 'block' : 'none';
     document.getElementById('attack_speed-container').style.display = isBow || isSword || isTool ? 'block' : 'none';
@@ -391,6 +397,7 @@ statFields.forEach(id => {
         document.getElementById('fishing_fortune-container').style.display = 'none';
         document.getElementById('farming_fortune-container').style.display = 'none';
         document.getElementById('attack_speed-container').style.display = 'none';
+        document.getElementById('trophy_chance-container').style.display = 'none';
         
     }
 }
@@ -431,6 +438,7 @@ function generateYAML() {
         mining_fortune: document.getElementById('mining_fortune').value,
         fishing_fortune: document.getElementById('fishing_fortune').value,
         farming_fortune: document.getElementById('farming_fortune').value,
+        trophy_chance: document.getElementById('trophy_chance').value,
     };
 
     let yamlData = `name: "${coloredName}"
